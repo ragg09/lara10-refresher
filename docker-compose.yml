@@ -1,0 +1,60 @@
+version: '3.7'
+services:
+  # PHP Service
+  laravel-app:
+    build:
+      context: ./php
+      dockerfile: Dockerfile
+    container_name: laravel-app
+    restart: unless-stopped
+    tty: true
+    environment:
+      SERVICE_NAME: laravel-app
+      SERVICE_TAGS: dev
+    working_dir: /var/www/html
+    ports:
+      - '9001:9000'
+    volumes:
+      - ./laravel-app:/var/www/html
+      - ./scripts:/var/www/html/scripts
+      - ./docker/php/php.ini:/usr/local/etc/php/conf.d/custom.ini
+    networks:
+      - app-network
+
+  # Webserver Service
+  laravel-server:
+    image: nginx:alpine
+    container_name: laravel-server
+    restart: unless-stopped
+    tty: true
+    ports:
+      - '8080:80'
+      - '8443:443'
+    volumes:
+      - ./laravel-app:/var/www/html
+      - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - app-network
+
+  # SQL Service
+  laravel-database:
+    image: mysql:8.0.33
+    container_name: laravel-database
+    tty: true
+    restart: unless-stopped
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: lara10
+      MYSQL_USER: lara10
+      MYSQL_PASSWORD: Password123
+    volumes:
+      - ./docker/mysql:/var/lib/mysql
+    networks:
+      - app-network
+
+# Docker Networks
+networks:
+  app-network:
+    driver: bridge
