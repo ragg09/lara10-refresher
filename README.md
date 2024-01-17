@@ -39,3 +39,18 @@ make setup
 ```
 http://localhost:8080
 ```
+
+# Some important resources
+
+### Laravel Documentation
+
+https://laravel.com/docs/10.x
+
+### Best Practices
+
+https://github.com/alexeymezenin/laravel-best-practices
+
+### Migrations
+
+Docs - https://laravel.com/docs/10.x/migrations#main-content
+Naming Convention - https://github.com/Selectra-Dev/standards/issues/19
