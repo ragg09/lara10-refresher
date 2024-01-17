@@ -53,4 +53,5 @@ https://github.com/alexeymezenin/laravel-best-practices
 ### Migrations
 
 Docs - https://laravel.com/docs/10.x/migrations#main-content
+
 Naming Convention - https://github.com/Selectra-Dev/standards/issues/19
