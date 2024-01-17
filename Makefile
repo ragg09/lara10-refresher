@@ -18,9 +18,11 @@ vendor:
 	docker-compose exec laravel-app bash -c "composer install"
 config-cache:
 	docker-compose exec laravel-app bash -c "php artisan config:cache"
-optimize-cleare:
+optimize-clear:
 	docker-compose exec laravel-app bash -c "php artisan optimize:clear"
 key:
 	docker-compose exec laravel-app bash -c "php artisan key:generate"
 migrate:
 	docker-compose exec laravel-app bash -c "php artisan migrate"
+laracon:
+	docker-compose exec laravel-app bash -c "$$args"
